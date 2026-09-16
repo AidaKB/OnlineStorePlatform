@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
-import type { Product } from "./product";
+import type { Product } from "../models/product";
+import Catalog from "../../features/catalog/Catalog";
+import { Container, Typography } from "@mui/material";
 
 
 
@@ -33,15 +35,11 @@ function App() {
         }])
     }
     return (
-        <div>
-            <h1 style={{ color: 'red' }}>Re Store</h1>
-            <ul>
-                {products.map((item , index) => (
-                    <li key={index}>{item.name} - {item.price}</li>
-                ))}
-            </ul>
-            <button onClick={() => addProduct()}>Add Product</button>
-        </div>
+        <Container maxWidth='xl'>
+            <Typography variant='h4'>Re Store</Typography>
+            <Catalog products={products} addProduct={addProduct } />
+            
+        </Container>
   )
 }
 
