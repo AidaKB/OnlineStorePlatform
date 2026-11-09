@@ -10,7 +10,7 @@ import { Box } from "@mui/material"
 function App() {
 
     const [products, setProducts] = useState<Product[]>([]);
-    const darkMode = true;
+    const [darkMode, setDarkMode] = useState(false);
     const palleteType = darkMode ? 'dark' : 'light';
 
     const them = createTheme({
@@ -21,7 +21,9 @@ function App() {
             }
         }
     })
-
+    function toggleDarkMode () {
+        setDarkMode(previous => !previous);
+    }
     useEffect(() => {
          function getData() {
             try {
@@ -50,13 +52,15 @@ function App() {
     //}
     return (
         <ThemeProvider theme={them}>
-            <CssBaseline/>
-            <NavBar />
+            <CssBaseline />
+            <NavBar darkMode={darkMode}
+                toggleDarkMode={toggleDarkMode} />
             <Box sx={{
                 minHeight: '100vh',
-                background: darkMode ? '#121212' : '#eaeaea'
+                background: darkMode ? 'radial-gradient(circle, #1e3aba, #111B27)' : 'radial-gradient(circle, #baecf9, #f0f9ff)',
+                py : 6
             } }>
-                <Container maxWidth="xl" sx={{ mt: 14 }}>
+                <Container maxWidth="xl" sx={{ mt: 8 }}>
 
 
                     <Catalog products={products} />
